@@ -70,6 +70,6 @@ cmake \
 
 make
 make mytest
-make package
+# make package
 
 exit 0

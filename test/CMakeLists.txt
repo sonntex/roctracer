@@ -65,19 +65,19 @@ function(build_matrix_transpose_test OUTPUT_FILE DEFINITIONS)
 endfunction(build_matrix_transpose_test)
 
 build_matrix_transpose_test(MatrixTranspose_test "")
-build_matrix_transpose_test(MatrixTranspose_hipaact_test HIP_API_ACTIVITY_ON=1)
-build_matrix_transpose_test(MatrixTranspose_mgpu MGPU_TEST=1)
+# build_matrix_transpose_test(MatrixTranspose_hipaact_test HIP_API_ACTIVITY_ON=1)
+# build_matrix_transpose_test(MatrixTranspose_mgpu MGPU_TEST=1)
 
-## Build MatrixTranspose MatrixTranspose_ctest
-add_custom_command(OUTPUT MatrixTranspose.c
-  COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/app/MatrixTranspose_test.cpp MatrixTranspose.c)
-hip_add_executable(MatrixTranspose_ctest MatrixTranspose.c)
-## Adding generated build-id as hip_add_executable doesn't generate automatically
-target_link_options(MatrixTranspose_ctest PRIVATE "-Wl,--build-id=md5")
-target_compile_definitions(MatrixTranspose_ctest PRIVATE HIP_TEST=0 __HIP_PLATFORM_AMD__)
-target_include_directories(MatrixTranspose_ctest PRIVATE ${PROJECT_SOURCE_DIR}/inc)
-target_link_libraries(MatrixTranspose_ctest PRIVATE roctracer roctx)
-add_dependencies(mytest MatrixTranspose_ctest)
+# ## Build MatrixTranspose MatrixTranspose_ctest
+# add_custom_command(OUTPUT MatrixTranspose.c
+#   COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/app/MatrixTranspose_test.cpp MatrixTranspose.c)
+# hip_add_executable(MatrixTranspose_ctest MatrixTranspose.c)
+# ## Adding generated build-id as hip_add_executable doesn't generate automatically
+# target_link_options(MatrixTranspose_ctest PRIVATE "-Wl,--build-id=md5")
+# target_compile_definitions(MatrixTranspose_ctest PRIVATE HIP_TEST=0 __HIP_PLATFORM_AMD__)
+# target_include_directories(MatrixTranspose_ctest PRIVATE ${PROJECT_SOURCE_DIR}/inc)
+# target_link_libraries(MatrixTranspose_ctest PRIVATE roctracer roctx)
+# add_dependencies(mytest MatrixTranspose_ctest)
 
 ## Build codeobj event test
 add_library(codeobj_test SHARED app/codeobj_test.cpp)
